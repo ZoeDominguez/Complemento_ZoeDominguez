@@ -63,7 +63,8 @@ puedeSalir(Persona, Sala):-
     Dificultad <5.
 
 %Punto 4
+
 esMacabra(Empresa):-
-    esSalaDe(_,Empresa),
-    forall(esSalaDe(Sala,Empresa), sala(Sala, terrorifica(_,_))).
+    esSalaDe(Sala,Empresa),
+    sala(Sala, terrorifica(_,_)).
     
