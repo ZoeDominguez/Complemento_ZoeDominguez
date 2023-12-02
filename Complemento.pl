@@ -45,6 +45,23 @@ nivelDeDificultadDeLaSala(Sala, Dificultad):-
     sala(Sala, Experiencia),
     dificultadDeExperiencia(Experiencia,Dificultad).
 
+%Punto 2
+esClaustrofobica(Persona):-
+    persona(Persona,_,Peculiaridades),
+    member(claustrofobia, Peculiaridades).
+    
+
+puedeSalir(Persona, Sala):-
+    not(esClaustrofobica(Persona)),
+    nivelDeDificultadDeLaSala(Sala, 1).
+
+puedeSalir(Persona, Sala):-
+    persona(Persona,Edad, _),
+    not(esClaustrofobica(Persona)),
+    nivelDeDificultadDeLaSala(Sala, Dificultad),
+    Edad > 13,
+    Dificultad <5.
+
 %Punto 4
 esMacabra(Empresa):-
     esSalaDe(_,Empresa),
