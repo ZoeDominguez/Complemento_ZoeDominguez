@@ -13,6 +13,7 @@ esSalaDe(socorro, salSiPuedes).
 esSalaDe(linternas, elLaberintoso).
 esSalaDe(guerrasEstelares, escapepepe).
 esSalaDe(fundacionDelMulo, escapepepe).
+esSalaDe(fundi, escapepepe).
 
 %terrorifica(CantidadDeSustos, EdadMinima).
 %familiar(Tematica, CantidadDeHabitaciones).
@@ -23,8 +24,9 @@ sala(elPayasoExorcista, terrorifica(100, 18)).
 sala(socorro, terrorifica(20, 12)).
 sala(linternas, familiar(comics, 5)).
 sala(guerrasEstelares, familiar(futurista, 7)).
-sala(fundacionDelMulo, enigmatica([combinacionAlfanumerica, deLlave, deBoton])).
+sala(fundacionDelMulo, terrorifica(20,30)).
 
+sala(fundi, terrorifica(20,30)).
 %Punto 1
 
 dificultadDeExperiencia(terrorifica(CantidadDeSustos, EdadMinima),Nivel):-
@@ -63,8 +65,19 @@ puedeSalir(Persona, Sala):-
     Dificultad <5.
 
 %Punto 4
+esSalaNoTerrorifica(Sala):-
+    sala(Sala, _),
+    not(sala(Sala, terrorifica(_,_))).
+
+noEsMacabra(Empresa):-
+    esSalaDe(Sala, Empresa),
+    esSalaNoTerrorifica(Sala).
 
 esMacabra(Empresa):-
-    esSalaDe(Sala,Empresa),
-    sala(Sala, terrorifica(_,_)).
+    esSalaDe(_,Empresa),
+    not(noEsMacabra(Empresa)).
+   
+%no tiene otra experiencia que no sea terrorrifica
+    
+% forall(esSalaDe(Sala,Empresa), sala(Sala, terrorifica(_,_))).
     
