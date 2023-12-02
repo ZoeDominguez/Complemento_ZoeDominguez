@@ -25,6 +25,8 @@ sala(linternas, familiar(comics, 5)).
 sala(guerrasEstelares, familiar(futurista, 7)).
 sala(fundacionDelMulo, enigmatica([combinacionAlfanumerica, deLlave, deBoton])).
 
+%Punto 1
+
 dificultadDeExperiencia(terrorifica(CantidadDeSustos, EdadMinima),Nivel):-
     Nivel is CantidadDeSustos - EdadMinima.
 
@@ -42,4 +44,10 @@ dificultadDeExperiencia(enigmatica(Candados), Nivel):-
 nivelDeDificultadDeLaSala(Sala, Dificultad):-
     sala(Sala, Experiencia),
     dificultadDeExperiencia(Experiencia,Dificultad).
+
+%Punto 4
+esMacabra(Empresa):-
+    esSalaDe(_,Empresa),
+    forall(esSalaDe(Sala,Empresa), sala(Sala, terrorifica(_,_))).
+    
 
